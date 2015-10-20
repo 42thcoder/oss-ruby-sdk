@@ -5,7 +5,7 @@ require "#{lib}/aliyun/oss/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "oss-sdk"
-  spec.version       = Aliyun::Oss::Version.to_s
+  spec.version       = Aliyun::Oss::VERSION
   spec.authors       = ["yunzheng"]
   spec.email         = ["zhangyunzheng@gmail.com"]
 

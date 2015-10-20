@@ -1,5 +1,10 @@
+
+$:.unshift(File.dirname(__FILE__))
+require 'oss/version'
+require 'oss/exceptions'
+
+
 module Aliyun
   module Oss
-    autoload :Version, 'oss/version'
   end
 end

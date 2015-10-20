@@ -1,16 +1,12 @@
 module Aliyun
   module Oss
     module Version
-      MAJOR = 0
-      MINOR = 1
-      PATCH = 1
-
-
-      # 打印语义化版本号
-      # @return [String] 版本号
-      def self.to_s
-        [MAJOR, MINOR, PATCH].join('.')
-      end
+      MAJOR    = '0'
+      MINOR    = '6'
+      TINY     = '3'
+      BETA     = nil # Time.now.to_i.to_s
     end
+
+    VERSION = [Version::MAJOR, Version::MINOR, Version::TINY, Version::BETA].compact * '.'
   end
 end
