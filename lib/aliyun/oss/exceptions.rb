@@ -1,4 +1,4 @@
-module Aliyun::Oss
+module Aliyun::OSS
   class OSSException < StandardError
     ATTRS = %i(error_message error_code request_id host_id)
     attr_accessor *ATTRS
@@ -42,4 +42,18 @@ module Aliyun::Oss
   class RequestTimeout < OSSException; end	#请求超时
   class SignatureDoesNotMatch < OSSException; end	#签名错误
   class TooManyBuckets < OSSException; end	#用户的Bucket数目超过限制
+
+
+  class InvalidOption < OSSException ; end
+  # Raised if an unrecognized option is passed when establishing a connection.
+  class InvalidConnectionOption < InvalidOption
+    def initialize(invalid_options)
+      message = "The following connection options are invalid: #{invalid_options.join(', ')}. "    +
+          "The valid connection options are: #{Connection::Options::VALID_OPTIONS.join(', ')}."
+      super(message)
+    end
+  end
+
+  # Raised if a request is attempted before any connections have been established.
+  class NoConnectionEstablished < OSSException ;end
 end

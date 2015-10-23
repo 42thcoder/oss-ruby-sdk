@@ -1,5 +1,5 @@
 module Aliyun
-  module Oss
+  module OSS
     module Version
       MAJOR    = '0'
       MINOR    = '6'
