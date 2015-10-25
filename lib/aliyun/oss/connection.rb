@@ -9,11 +9,11 @@ module Aliyun
         self.http    = get_http_instance
       end
 
-      def get_http_instance
-        http             = Net::HTTP.new(options[:server], options[:port])
-        http.use_ssl     = options[:use_ssl].present? || options[:port] == 443
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        http
+
+      # do actual http request
+      def request
+        request = Net::HTTP::Get.new('')
+        authenticate(request)
       end
 
       def protocol
@@ -25,9 +25,21 @@ module Aliyun
       end
 
 
+      private
+      def authenticate(request)
+        request['Authorization'] = Authentication::Header.new(request, access_key_id, secret_access_key)
+      end
+
+      def get_http_instance
+        http             = Net::HTTP.new(options[:server], options[:port])
+        http.use_ssl     = options[:use_ssl].present? || options[:port] == 443
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        http
+      end
+
+
       module Management
         extend ActiveSupport::Concern
-
 
         module ClassMethods
           attr_accessor :connections
