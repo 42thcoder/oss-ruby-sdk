@@ -14,7 +14,6 @@ module Aliyun
         end
       end
 
-      # do actual http request
       def request(verb, path, headers = {}, body = nil, attempts = 0, &block)
         request = Net::HTTP.const_get(verb.capitalize).new(path, headers)
         authenticate(request)

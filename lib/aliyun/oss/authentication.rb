@@ -24,10 +24,7 @@ module Aliyun
 
         def encoded_canonical
           digest   = OpenSSL::Digest.new('sha1')
-          p access_key_secret, basic + extra + CanonicalizeString.new(request)
           [OpenSSL::HMAC.digest(digest, access_key_secret, basic + extra + CanonicalizeString.new(request))].pack('m').strip
-          # b64_hmac = [OpenSSL::HMAC.digest(digest, access_key_secret, basic + extra + CanonicalizeString.new(request))].pack('m').strip
-          # CGI.escape(b64_hmac)
         end
 
         def date_time
@@ -61,11 +58,9 @@ module Aliyun
         private
         def expires
           return options[:expires] if options[:expires]
-          date_time.to_i + expires_in
-        end
 
-        def expires_in
-          options.has_key?(:expires_in) ? Integer(options[:expires_in]) : DEFAULT_EXPIRY
+          expires_in = options.has_key?(:expires_in) ? Integer(options[:expires_in]) : DEFAULT_EXPIRY
+          date_time.to_i + expires_in
         end
 
         def extra
@@ -85,22 +80,12 @@ module Aliyun
           super()
 
           self.request = request
-          # add_basic
           build_oss_headers
           build_resources
         end
 
 
         private
-
-        # def add_basic
-        #   request['host'] ||= DEFAULT_HOST
-        #   request['date'] ||= Time.current.httpdate
-        #
-        #   content_md5 = request['content-md5'] || '\n'
-        #   content_type = request.content_type || '\n'
-        #   self << "#{[request.method, content_md5, content_type, request['date']].join("\n")}\n"
-        # end
 
         def build_oss_headers
           oss_headers.sort_by { |k, _| k }.each do |key, value|
@@ -129,6 +114,7 @@ module Aliyun
 
         def path
           segments = request['host'].split('.')
+          # TODO a better way to fetch path
           path = segments.size == 4 ? segments.first : request.path
           [request.path[/[&?](acl|logging)(?:&|=|$)/, 1], path[/^[^?]*/]].compact.join('?')
         end

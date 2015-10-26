@@ -3,8 +3,7 @@ module Aliyun
     class Service < Base
       class << self
         def buckets
-          response = get('/', { 'date'=> Date.tomorrow.to_datetime.httpdate })
-          p get('/').body
+          get('/', { 'date'=> Date.tomorrow.to_datetime.httpdate })
         end
       end
     end

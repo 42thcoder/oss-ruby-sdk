@@ -6,9 +6,6 @@ module Aliyun::OSS
       self.name = name
     end
 
-    def list_buckets(query, options)
-
-    end
 
     class << self
       def create(name, permission)
@@ -17,7 +14,6 @@ module Aliyun::OSS
       end
 
       def objects(name, date)
-        p 'buckets'
         get('/', { 'host'=> "#{name}.oss-cn-hangzhou.aliyuncs.com", 'date'=> date })
       end
     end
