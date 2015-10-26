@@ -10,7 +10,7 @@ describe Bucket do
     end
 
     it 'can create public read bucket' do
-      r = Bucket.objects('ruby-sdk', date)
+      Bucket.objects('ruby-sdk', Time.now.httpdate)
     end
   end
 end
