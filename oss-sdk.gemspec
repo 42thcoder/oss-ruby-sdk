@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-byebug"
 
   spec.add_runtime_dependency "activesupport", '~> 4.2'
+  spec.add_runtime_dependency "nokogiri"
 end

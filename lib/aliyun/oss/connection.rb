@@ -1,23 +1,30 @@
 module Aliyun
   module OSS
     class Connection
-      attr_accessor :options, :http
+      attr_accessor :options, :client
 
       def initialize(options={})
-        # TODO 需要校验 options
         self.options = Options.new(options)
-        self.http    = get_http_instance
       end
 
+      def client
+        @client ||= Net::HTTP.new(options[:server], options[:port]).tap do |client|
+          client.use_ssl     = options[:use_ssl].present? || options[:port] == 443
+          client.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        end
+      end
 
       # do actual http request
-      def request
-        request = Net::HTTP::Get.new('')
+      def request(verb, path, headers = {}, body = nil, attempts = 0, &block)
+        request = Net::HTTP.const_get(verb.capitalize).new(path, headers)
         authenticate(request)
+
+
+        client.request(request)
       end
 
       def protocol
-        http.use_ssl? ? 'https://' : 'http://'
+        client.use_ssl? ? 'https://' : 'http://'
       end
 
       def persistent?
@@ -25,27 +32,15 @@ module Aliyun
       end
 
 
-      private
-      def authenticate(request)
-        request['Authorization'] = Authentication::Header.new(request, access_key_id, secret_access_key)
-      end
-
-      def get_http_instance
-        http             = Net::HTTP.new(options[:server], options[:port])
-        http.use_ssl     = options[:use_ssl].present? || options[:port] == 443
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        http
-      end
-
-
       module Management
         extend ActiveSupport::Concern
+
 
         module ClassMethods
           attr_accessor :connections
 
           def establish_connection!(options={})
-            options                      = default_connection.options.merge(options) if connected?
+            options                           = default_connection.options.merge(options) if connected? && default_connection
             self.connections ||= {}
             self.connections[connection_name] = Connection.new(options)
           end
@@ -65,12 +60,12 @@ module Aliyun
           def disconnect(name = connection_name)
             name       = default_connection unless connections.has_key?(name)
             connection = connections[name]
-            connection.http.finish if connection.persistent?
+            connection.client.finish if connection.persistent?
             connections.delete(name)
           end
 
           def disconnect!
-            connections.each_key {|connection| disconnect(connection)}
+            connections.each_key { |connection| disconnect(connection) }
           end
 
           private
@@ -91,7 +86,7 @@ module Aliyun
 
 
       class Options < Hash
-        VALID_OPTIONS = [:access_key_id, :access_key_secret, :server, :port, :use_ssl, :persistent, :proxy].freeze
+        VALID_OPTIONS = [:access_key_id, :access_key_secret, :server, :port, :use_ssl, :persistent].freeze
 
         def initialize(options = {})
           super()
@@ -107,6 +102,13 @@ module Aliyun
           lack_access = options[:access_key_id].nil? || options[:access_key_secret].nil?
           raise ArgumentError, 'need both access_key_id and access_key_secret' if lack_access
         end
+      end
+
+
+
+      private
+      def authenticate(request)
+        request['Authorization'] = Authentication::Header.new(request, options[:access_key_id], options[:access_key_secret])
       end
     end
   end

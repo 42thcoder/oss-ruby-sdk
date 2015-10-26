@@ -8,11 +8,11 @@ describe Connection do
     let(:secure_connection) { Connection.new(options.merge(use_ssl: true)) }
 
     it 'can create a connection' do
-      expect(connection.http).to be_a Net::HTTP
+      expect(connection.client).to be_a Net::HTTP
     end
 
     it 'can set ues ssl correctly' do
-      expect(secure_connection.http.use_ssl?).to be_truthy
+      expect(secure_connection.client.use_ssl?).to be_truthy
     end
 
     it 'has right protocol' do

@@ -12,6 +12,6 @@ require 'oss/service'
 
 module Aliyun
   module OSS
-    DEFAULT_HOST = 'oss.aliyuncs.com'
+    DEFAULT_HOST = 'oss-cn-hangzhou.aliyuncs.com'
   end
 end
