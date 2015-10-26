@@ -1,4 +1,6 @@
 require 'active_support/all'
+require 'nokogiri'
+require 'nori'
 
 $:.unshift(File.dirname(__FILE__))
 require 'oss/version'

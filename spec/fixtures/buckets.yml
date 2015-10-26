@@ -1,0 +1,18 @@
+list_with_one_bucket: >
+  <?xml version="1.0" encoding="UTF-8"?>
+  <ListAllMyBucketsResult>
+    <Owner>
+      <ID>1889927870986049</ID>
+      <DisplayName>1889927870986049</DisplayName>
+    </Owner>
+    <Buckets>
+      <Bucket>
+        <Location>oss-cn-hangzhou</Location>
+        <Name>ruby-sdk</Name>
+        <CreationDate>2015-10-26T08:23:05.000Z</CreationDate>
+      </Bucket>
+    </Buckets>
+  </ListAllMyBucketsResult>
+
+
+

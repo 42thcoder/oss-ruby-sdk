@@ -35,4 +35,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "activesupport", '~> 4.2'
   spec.add_runtime_dependency "nokogiri"
+  spec.add_runtime_dependency "nori"
 end

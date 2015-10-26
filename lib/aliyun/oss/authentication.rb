@@ -114,7 +114,9 @@ module Aliyun
 
         def path
           segments = request['host'].split('.')
-          # TODO a better way to fetch path
+
+
+          # TODO a better way to fetch path, maybe check if there is any bucket
           path = segments.size == 4 ? segments.first : request.path
           [request.path[/[&?](acl|logging)(?:&|=|$)/, 1], path[/^[^?]*/]].compact.join('?')
         end

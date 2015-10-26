@@ -13,8 +13,8 @@ module Aliyun::OSS
         put('/', { 'x-oss-acl'=> permission, 'host'=> "#{name}.oss-cn-hangzhou.aliyuncs.com"})
       end
 
-      def objects(name, date)
-        get('/', { 'host'=> "#{name}.oss-cn-hangzhou.aliyuncs.com", 'date'=> date })
+      def objects(name, date, content_type)
+        get('/', { 'host'=> "#{name}.oss-cn-hangzhou.aliyuncs.com", 'date'=> date, 'content-type'=> content_type, 'accept'=> content_type })
       end
     end
   end

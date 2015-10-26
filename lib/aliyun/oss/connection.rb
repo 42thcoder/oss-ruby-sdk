@@ -18,7 +18,6 @@ module Aliyun
         request = Net::HTTP.const_get(verb.capitalize).new(path, headers)
         authenticate(request)
 
-
         client.request(request)
       end
 
