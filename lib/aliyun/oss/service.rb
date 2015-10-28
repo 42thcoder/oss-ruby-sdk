@@ -2,19 +2,17 @@ module Aliyun
   module OSS
     class Service < Base
       class << self
-        attr_accessor :response
-
-        def buckets
-          Response.new(response).buckets
+        # fetch all the buckets current user have
+        # @param [String] prefix
+        # @param [String] marker
+        # @param [Integer] max_keys
+        def buckets(prefix:nil, marker:nil, max_keys:100)
+          raise ArgumentError, 'max_keys must be less than 1000' if max_keys > 1000
+          Response.new(get('/')).buckets
         end
 
         def owner
-          Response.new(response).owner
-        end
-
-        private
-        def response
-          @response ||= get('/')
+          Response.new(get('/')).owner
         end
       end
 

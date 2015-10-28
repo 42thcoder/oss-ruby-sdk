@@ -17,6 +17,7 @@ module Aliyun
       def request(verb, path, headers = {}, body = nil, attempts = 0, &block)
         request = Net::HTTP.const_get(verb.capitalize).new(path, headers)
         authenticate(request)
+        add_user_agent(request)
 
         client.request(request)
       end
@@ -27,6 +28,15 @@ module Aliyun
 
       def persistent?
         options[:persistent]
+      end
+
+      private
+      def authenticate(request)
+        request['Authorization'] = Authentication::Header.new(request, options[:access_key_id], options[:access_key_secret])
+      end
+
+      def add_user_agent(request)
+        request['User-Agent'] = "aliyun-sdk-ruby/#{RUBY_DESCRIPTION}"
       end
 
 
@@ -100,13 +110,6 @@ module Aliyun
           lack_access = options[:access_key_id].nil? || options[:access_key_secret].nil?
           raise ArgumentError, 'need both access_key_id and access_key_secret' if lack_access
         end
-      end
-
-
-
-      private
-      def authenticate(request)
-        request['Authorization'] = Authentication::Header.new(request, options[:access_key_id], options[:access_key_secret])
       end
     end
   end

@@ -5,14 +5,24 @@ module Aliyun::OSS
     class << self
       %i(get put delete post).each do |verb|
         define_method verb do |path, headers={}, body = nil, &block|
-          headers.merge!('User-Agent'=> agent)
-          connection.request(verb, path, headers, body, &block)
+          request = Request.new(headers, verb)
+          Response.new connection.request(verb, path, headers, body, &block)
         end
       end
 
       private
-      def agent
-        "aliyun-sdk-ruby/#{RUBY_DESCRIPTION}"
+      def process_options!(options, verb)
+
+      end
+    end
+
+    class Response
+
+    end
+
+    class Request
+      def initialize(headers, verb)
+
       end
     end
   end
