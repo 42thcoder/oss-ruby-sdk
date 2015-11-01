@@ -57,6 +57,7 @@ module Aliyun
         extend ActiveSupport::Concern
 
         included do
+          mattr_accessor :connections
           self.connections = {}
         end
 
