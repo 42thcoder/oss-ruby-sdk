@@ -4,25 +4,9 @@ module Aliyun::OSS
 
     class << self
       %i(get put delete post).each do |verb|
-        define_method verb do |path, headers={}, body = nil, &block|
-          request = Request.new(headers, verb)
-          Response.new connection.request(verb, path, headers, body, &block)
+        define_method verb do |path, query:{}, headers:{}, body:nil, bucket:nil, object:nil|
+          connection.request(verb, path, query: query, headers: headers, body: body, bucket: bucket, object: object)
         end
-      end
-
-      private
-      def process_options!(options, verb)
-
-      end
-    end
-
-    class Response
-
-    end
-
-    class Request
-      def initialize(headers, verb)
-
       end
     end
   end

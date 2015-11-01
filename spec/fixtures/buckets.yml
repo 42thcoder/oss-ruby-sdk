@@ -15,4 +15,17 @@ list_with_one_bucket: >
   </ListAllMyBucketsResult>
 
 
+location: >
+  <?xml version="1.0" encoding="UTF-8"?>
+  <LocationConstraint>oss-cn-hangzhou</LocationConstraint>
 
+
+delete_no_such_bucket: >
+  <?xml version="1.0" encoding="UTF-8"?>
+  <Error>
+    <BucketName>ruby-test-123</BucketName>
+    <Code>NoSuchBucket</Code>
+    <Message>The specified bucket does not exist.</Message>
+    <RequestId>5635EA0EAEC9A1095313D29E</RequestId>
+    <HostId>ruby-test-123.oss-cn-hangzhou.aliyuncs.com</HostId>
+  </Error>

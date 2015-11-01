@@ -4,12 +4,12 @@ module Aliyun
       OSS_HEADER_PREFIX = 'x-oss-'
 
       class Signature < String
-        attr_accessor :access_key_id, :access_key_secret, :request, :options
+        attr_accessor :access_key_id, :access_key_secret, :request, :options, :bucket, :query, :object
 
-        def initialize(request, access_key_id, access_key_secret, options={})
+        def initialize(request, query, options)
           super()
-          self.request, self.access_key_id, self.access_key_secret, self.options =
-              request, access_key_id, access_key_secret, options
+          self.request, self.access_key_id, self.access_key_secret, self.query, self.bucket, self.options, self.object =
+            request, options[:access_key_id], options[:access_key_secret], query, options[:bucket], options, options[:object]
         end
 
         private
@@ -17,14 +17,16 @@ module Aliyun
           request['host'] ||= DEFAULT_HOST
           ''.tap do |s|
             s << "#{request.method}\n"
-            s << ( "#{request['content-md5']}\n" || "\n" )
-            s << ( "#{request.content_type}\n" || "\n" )
+            s << ("#{request['content-md5']}\n" || "\n")
+            s << ("#{request.content_type}\n" || "\n")
           end
         end
 
         def encoded_canonical
-          digest   = OpenSSL::Digest.new('sha1')
-          [OpenSSL::HMAC.digest(digest, access_key_secret, basic + extra + CanonicalizeString.new(request))].pack('m').strip
+          digest = OpenSSL::Digest.new('sha1')
+          r = basic + extra + CanonicalizeString.new(request, query, bucket, object)
+          p r
+          [OpenSSL::HMAC.digest(digest, access_key_secret, basic + extra + CanonicalizeString.new(request, query, bucket, object))].pack('m').strip
         end
 
         def date_time
@@ -70,23 +72,22 @@ module Aliyun
 
 
       class CanonicalizeString < String
-        DEFAULT_HEADERS  = %w(method content-type content-md5)
+        DEFAULT_HEADERS      = %w(method content-type content-md5)
         ALIYUN_HEADER_PREFIX = /^#{OSS_HEADER_PREFIX}/io
-        RELEVANT_HEADERS = ['content-md5', 'content-type', 'date', ALIYUN_HEADER_PREFIX]
+        RELEVANT_HEADERS     = ['content-md5', 'content-type', 'date', ALIYUN_HEADER_PREFIX]
 
-        attr_accessor :oss_headers, :request
+        attr_accessor :oss_headers, :request, :bucket, :object, :query
 
-        def initialize(request)
+        def initialize(request, query, bucket, object)
           super()
 
-          self.request = request
+          self.request, self.query, self.bucket, self.object = request, query, bucket, object
           build_oss_headers
           build_resources
         end
 
 
         private
-
         def build_oss_headers
           oss_headers.sort_by { |k, _| k }.each do |key, value|
             value = value.to_s.strip
@@ -109,16 +110,28 @@ module Aliyun
         end
 
         def build_resources
-          self << URI.unescape(path)
+          self << URI.unescape(path_query)
         end
 
-        def path
-          segments = request['host'].split('.')
-
-
-          # TODO a better way to fetch path, maybe check if there is any bucket
-          path = segments.size == 4 ? segments.first : request.path
-          [request.path[/[&?](acl|logging)(?:&|=|$)/, 1], path[/^[^?]*/]].compact.join('?')
+        def path_query
+          override_responses = %w(response-content-type response-content-language
+                                response-cache-control logging response-content-encoding acl uploadId uploads partNumber
+                                group link delete website location objectInfo response-expires response-content-disposition
+                                cors lifecycle restore qos referer append position).sort
+          result = '/'
+          result += "#{bucket}/" if bucket
+          result += object if object
+          if query.present?
+            raise ArgumentError, "invalid resources params: #{query}" if (query.keys & override_responses).blank?
+            result += '?'
+            tmp = query.map { |k, v| { k.downcase.strip => v } if override_responses.include?(k) }.reduce(:merge)
+            tmp.each_with_index do |(k, v), index|
+              result += k
+              result += "=#{v}" if v
+              result += '&' if index < tmp.keys.size - 1
+            end
+          end
+          result
         end
       end
     end

@@ -14,10 +14,15 @@ module Aliyun
         end
       end
 
-      def request(verb, path, headers = {}, body = nil, attempts = 0, &block)
+      def request(verb, path, query:{}, headers:{}, body:nil, bucket:nil, object:nil)
+        self.options.merge!(bucket: bucket, object: object)
+        # headers['x-oss-security-token'] = sts_token
         request = Net::HTTP.const_get(verb.capitalize).new(path, headers)
-        authenticate(request)
+        request.body = body
         add_user_agent(request)
+        set_content_type(request)
+        # set_content_md5(request)
+        authenticate(request, query, options)
 
         client.request(request)
       end
@@ -31,12 +36,20 @@ module Aliyun
       end
 
       private
-      def authenticate(request)
-        request['Authorization'] = Authentication::Header.new(request, options[:access_key_id], options[:access_key_secret])
+      def authenticate(request, query, options)
+        request['Authorization'] = Authentication::Header.new(request, query, options)
       end
 
       def add_user_agent(request)
-        request['User-Agent'] = "aliyun-sdk-ruby/#{RUBY_DESCRIPTION}"
+        request['User-Agent'] = "aliyun-oss-ruby-sdk #{VERSION}/#{RUBY_DESCRIPTION}"
+      end
+
+      def set_content_type(request)
+        request['Content-Type'] ||= 'application/x-www-form-urlencoded'
+      end
+
+      def set_content_md5(request)
+        request['Content-MD'] ||= Base64.encode64(Digest::MD5.digest(request.body)).strip if request.body
       end
 
 
