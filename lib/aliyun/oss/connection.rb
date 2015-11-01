@@ -56,13 +56,15 @@ module Aliyun
       module Management
         extend ActiveSupport::Concern
 
+        included do
+          self.connections = {}
+        end
 
         module ClassMethods
           attr_accessor :connections
 
           def establish_connection!(options={})
             options                           = default_connection.options.merge(options) if connected? && default_connection
-            self.connections ||= {}
             self.connections[connection_name] = Connection.new(options)
           end
 

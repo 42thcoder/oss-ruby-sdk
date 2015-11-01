@@ -8,6 +8,12 @@ module Aliyun::OSS
           connection.request(verb, path, query: query, headers: headers, body: body, bucket: bucket, object: object)
         end
       end
+
+
+      private
+      def host(name, location)
+        "#{name}.#{location}.aliyuncs.com"
+      end
     end
   end
 end

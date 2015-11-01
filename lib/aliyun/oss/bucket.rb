@@ -39,11 +39,6 @@ module Aliyun::OSS
       def objects(name, date, content_type)
         get('/', { 'host'=> "#{name}.oss-cn-hangzhou.aliyuncs.com", 'date'=> date, 'content-type'=> content_type, 'accept'=> content_type })
       end
-
-      private
-      def host(name, location)
-        "#{name}.#{location}.aliyuncs.com"
-      end
     end
 
     class RequestOptions

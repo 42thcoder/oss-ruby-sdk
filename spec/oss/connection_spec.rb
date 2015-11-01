@@ -35,6 +35,8 @@ describe Connection do
 
       expect(Base.connected?).to be_truthy
       expect(Base.connections['Aliyun::OSS::Base']).to be_a Connection
+      Bucket.connected?
+      expect(Bucket.connected?).to be_truthy
     end
   end
 end
