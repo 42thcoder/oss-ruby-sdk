@@ -10,6 +10,7 @@ require 'oss/connection'
 require 'oss/base'
 require 'oss/bucket'
 require 'oss/service'
+require 'oss/object'
 
 
 module Aliyun

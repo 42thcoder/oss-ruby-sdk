@@ -118,6 +118,9 @@ module Aliyun
                                 response-cache-control logging response-content-encoding acl uploadId uploads partNumber
                                 group link delete website location objectInfo response-expires response-content-disposition
                                 cors lifecycle restore qos referer append position).sort
+          object = self.object || request.path.split('?').first.split('/').last
+          bucket = self.bucket || ( request['host'].split('.').size == 4 ? request['host'].split('.').first : nil )
+
           result = '/'
           result += "#{bucket}/" if bucket
           result += object if object

@@ -45,7 +45,7 @@ module Aliyun
       end
 
       def set_content_type(request)
-        request['Content-Type'] ||= 'application/x-www-form-urlencoded'
+        request['Content-Type'] ||= 'application/x-www-form-urlencoded' unless request.method == 'HEAD'
       end
 
       def set_content_md5(request)
