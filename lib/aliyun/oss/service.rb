@@ -12,8 +12,7 @@ module Aliyun
         def buckets(prefix:nil, marker:nil, max_keys: 100)
           raise ArgumentError, 'max_keys must be less than 1000' if max_keys > 1000
           query = { 'prefix'=> prefix, 'marker'=> marker, 'max-keys'=> max_keys }.compact
-          
-          Response.new(get("/?#{query}", query: query)).buckets
+          Response.new(get("/?#{query.to_query}", query: query)).buckets
         end
 
         # Fetch info of owner.
@@ -40,7 +39,7 @@ module Aliyun
         end
 
         def buckets
-          @buckets = parse[:buckets]
+          @buckets = parse[:buckets][:bucket]
           @buckets = [@buckets] unless @buckets.is_a? Array
         end
 

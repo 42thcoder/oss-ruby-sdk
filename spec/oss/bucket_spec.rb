@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Bucket do
   context 'create' do
     let(:options) { { server: DEFAULT_HOST, access_key_id: KEY_ID, access_key_secret: KEY_SECRET }}
-    before { Bucket.establish_connection!(options) }
+    before { Base.establish_connection!(options) }
 
     it 'will raise exception when name is invalid' do
       expect { Bucket.create('') }.to raise_exception InvalidBucketName

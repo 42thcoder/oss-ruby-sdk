@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://oss-cn-hangzhou.aliyuncs.com/?max-keys=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.0.1/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - oss-cn-hangzhou.aliyuncs.com
+      Date:
+      - Thu, 05 Nov 2015 14:15:07 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:Lx2eA49ISpmMh3JtE0n4m6+P5Qg=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 05 Nov 2015 14:13:51 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '505'
+      Connection:
+      - keep-alive
+      Server:
+      - AliyunOSS
+      X-Oss-Request-Id:
+      - 563B641F68CE4777355005D0
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListAllMyBucketsResult>
+          <Prefix></Prefix>
+          <Marker></Marker>
+          <MaxKeys>1</MaxKeys>
+          <IsTruncated>true</IsTruncated>
+          <NextMarker>123-ruby</NextMarker>
+          <Owner>
+            <ID>1889927870986049</ID>
+            <DisplayName>1889927870986049</DisplayName>
+          </Owner>
+          <Buckets>
+            <Bucket>
+              <Location>oss-cn-hangzhou</Location>
+              <Name>123-ruby</Name>
+              <CreationDate>2015-11-05T13:18:42.000Z</CreationDate>
+            </Bucket>
+          </Buckets>
+        </ListAllMyBucketsResult>
+    http_version: 
+  recorded_at: Thu, 05 Nov 2015 14:15:07 GMT
+recorded_with: VCR 2.9.3

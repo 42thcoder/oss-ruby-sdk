@@ -5,25 +5,22 @@ describe Service do
   before { Base.establish_connection!(options) }
   let(:service) { Service.new }
 
+
   it 'should has a valid connection' do
     expect(Service.connection).not_to be_nil
   end
 
-  it 'should make http request' do
-    p 123
-    expect(Service.buckets(max_keys: 1)).not_to be_nil
-
-  end
-
-  it 'has can fetch bucket list' do
-    buckets = Service.buckets
+  it 'can fetch bucket list' do
+    buckets = Service.buckets(max_keys: 1)
     expect(buckets).to be_a_kind_of Array
-    expect(buckets.first[:bucket].keys).to match_array %i(location name creation_date)
+    expect(buckets.size).to eq 1
+    expect(buckets.first).to include :name, :location, :creation_date
   end
 
   it 'can fetch owner info' do
     owner = Service.owner
+
+    expect(owner).to include :id, :display_name
     expect(owner[:id]).to be_a_kind_of String
-    expect(owner[:display_name]).to be_a_kind_of String
   end
 end

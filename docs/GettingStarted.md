@@ -60,8 +60,10 @@ After set up, you can just have fun. The API of the SDK can be read [here](http:
 The three main concepts of OSS are the service, buckets and objects. 
 
 ### Service 
-The service lets you find out general information 
-about your account, like what buckets you have. 
+
+The service lets you find out general information about your account, like what buckets you have. 
+
+See `Service.buckets` `Service.owner`
 
 ### Bucket
 
