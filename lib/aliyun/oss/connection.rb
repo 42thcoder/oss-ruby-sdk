@@ -110,7 +110,7 @@ module Aliyun
 
 
       class Options < Hash
-        VALID_OPTIONS = [:access_key_id, :access_key_secret, :server, :port, :use_ssl, :persistent].freeze
+        VALID_OPTIONS = [:access_key_id, :access_key_secret, :server, :port, :use_ssl, :persistent, :bucket, :object].freeze
 
         def initialize(options = {})
           super()

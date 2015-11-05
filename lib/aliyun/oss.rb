@@ -1,6 +1,9 @@
 require 'active_support/all'
 require 'nokogiri'
 require 'nori'
+require 'dotenv'
+
+Dotenv.load
 
 $:.unshift(File.dirname(__FILE__))
 require 'oss/version'

@@ -8,8 +8,7 @@ include Aliyun::OSS
 
 Coveralls.wear!
 
+Dotenv.load
 
-secrets = YAML.load_file('./secret.yml')
-
-KEY_ID = secrets['key_id']
-KEY_SECRET = secrets['key_secret']
+KEY_ID = ENV['KEY_ID']
+KEY_SECRET = ENV['KEY_SECRET']
