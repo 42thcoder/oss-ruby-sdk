@@ -1,4 +1,3 @@
-require 'YAML'
 require 'coveralls'
 # require 'webmock/rspec'
 
