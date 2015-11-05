@@ -5,3 +5,6 @@ before_install:
   - gem update --system
   - gem update bundler
 script: bundle exec rspec spec
+addons:
+    code_climate:
+        repo_token: 9c909e20eb1f6bb3117314cafb2a7669a17b228b6b076fbfc9f778fe0bd61ac5

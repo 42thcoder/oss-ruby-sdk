@@ -4,9 +4,12 @@ require 'vcr'
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'aliyun/oss'
+require 'codeclimate-test-reporter'
+
 include Aliyun::OSS
 
 Coveralls.wear!
+CodeClimate::TestReporter.start
 
 Dotenv.load
 
