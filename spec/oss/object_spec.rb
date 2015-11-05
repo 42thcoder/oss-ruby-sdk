@@ -26,4 +26,10 @@ describe OSSObject do
       p 123
     end
   end
+
+  context 'copy' do
+    it 'can copy existing object' do
+      r = OSSObject.copy()
+    end
+  end
 end

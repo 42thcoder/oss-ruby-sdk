@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "#{lib}/aliyun/oss/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "aliyun-oss-sdk"
+  spec.name          = "aliyun-ruby-oss"
   spec.version       = Aliyun::OSS::VERSION
-  spec.authors       = ["yunzheng"]
-  spec.email         = ["zhangyunzheng@gmail.com"]
+  spec.authors       = ["42thcoder"]
+  spec.email         = ["42thcoder@gmail.com"]
 
   spec.summary       = %q{oss sdk.}
   spec.description   = %q{oss sdk.}
-  spec.homepage      = "http://github.com"
+  spec.homepage      = "http://github.com/42thcoder"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "yard"
   spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "coveralls"
 
   spec.add_runtime_dependency "activesupport", '~> 4.2'
   spec.add_runtime_dependency "nokogiri"
