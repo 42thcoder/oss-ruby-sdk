@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://oss-cn-hangzhou.aliyuncs.com/?logging
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <BucketLoggingStatus>
+          <LoggingEnabled>
+            <TargetBucket>ruby-sdk</TargetBucket>
+          </LoggingEnabled>
+        </BucketLoggingStatus>
+    headers:
+      Host:
+      - ruby-sdk.oss-cn-hangzhou.aliyuncs.com
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.0.1/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Thu, 05 Nov 2015 16:43:51 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:x0lbtrb07nx1r57vsuT8yRMAkME=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 05 Nov 2015 16:42:36 GMT
+      Server:
+      - AliyunOSS
+      X-Oss-Request-Id:
+      - 563B86FC3CA56B200CE2788C
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 05 Nov 2015 16:43:53 GMT
+- request:
+    method: put
+    uri: http://oss-cn-hangzhou.aliyuncs.com/?logging
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <BucketLoggingStatus>
+          <LoggingEnabled>
+            <TargetBucket>ruby-sdk</TargetBucket>
+          </LoggingEnabled>
+        </BucketLoggingStatus>
+    headers:
+      Host:
+      - ruby-sdk.oss-cn-hangzhou.aliyuncs.com
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.0.1/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Thu, 05 Nov 2015 16:43:53 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:Pi7Hu4UCqDiiT1HRmAVkCgr9RsQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - AliyunOSS
+      Date:
+      - Thu, 05 Nov 2015 16:42:36 GMT
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      X-Oss-Request-Id:
+      - 563B86FC9C75D67EC1B0B6DD
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 05 Nov 2015 16:43:53 GMT
+recorded_with: VCR 2.9.3

@@ -117,13 +117,14 @@ module Aliyun
           override_responses = %w(response-content-type response-content-language
                                 response-cache-control logging response-content-encoding acl uploadId uploads partNumber
                                 group link delete website location objectInfo response-expires response-content-disposition
-                                cors lifecycle restore qos referer append position).sort
+                                cors lifecycle restore qos referer append position logging).sort
           object = self.object || request.path.split('?').first.split('/').last
           bucket = self.bucket || ( request['host'].split('.').size == 4 ? request['host'].split('.').first : nil )
           result = '/'
           result += "#{bucket}/" if bucket
           result += object if object
-          if query.present? & (query.keys & override_responses).present?
+
+          if query.present? && (query.keys & override_responses).present?
             # raise ArgumentError, "invalid resources params: #{query}" if (query.keys & override_responses).blank?
             result += '?'
             tmp = query.map { |k, v| { k.downcase => v } if override_responses.include?(k) }.reduce(:merge)

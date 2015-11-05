@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://oss-cn-hangzhou.aliyuncs.com/?location
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Host:
+      - ruby-sdk.oss-cn-hangzhou.aliyuncs.com
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.0.1/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Thu, 05 Nov 2015 16:54:03 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:Uixl/Dv9LywUii/4bjutJnv0qrU=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '96'
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 05 Nov 2015 16:52:47 GMT
+      Server:
+      - AliyunOSS
+      X-Oss-Request-Id:
+      - 563B895F6D75CAB240E0D2FC
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <LocationConstraint>oss-cn-hangzhou</LocationConstraint>
+    http_version: 
+  recorded_at: Thu, 05 Nov 2015 16:54:04 GMT
+recorded_with: VCR 2.9.3

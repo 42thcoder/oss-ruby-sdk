@@ -1,15 +1,22 @@
 module Aliyun::OSS
   class OSSException < StandardError
-    # ATTRS = %i(error_message error_code request_id host_id)
-    # attr_accessor *ATTRS
+    # attr_accessor :message, :code, :request_id, :host_id, :bucket_name, :object_name
     #
-    # def initialize(*args)
-    #   ATTRS.each_with_index {|attr, index| self.send("#{attr.to_s}=", args[index])}
+    # def initialize(message:, code:, request_id:, host_id:, bucket_name:nil, object_name:nil)
+    #   self.message, self.code, self.request_id, self.host_id, self.bucket_name, self.object_name =
+    #     message, code, request_id, host_id, bucket_name, object_name
     # end
     #
     # def to_s
-    #   "#{error_message}\n[ErrorCode]: #{error_code}\n[RequestId]: #{request_id}\n[HostId]: #{host_id}"
+    #   "#{message}\n[ErrorCode]: #{code}\n[RequestId]: #{request_id}\n[HostId]: #{host_id}"
     # end
+
+    attr_accessor :response
+
+    def initialize(message, response)
+      self.response = response
+      super(message)
+    end
   end
 
   class AccessDenied < OSSException; end	#拒绝访问
@@ -43,7 +50,7 @@ module Aliyun::OSS
   class TooManyBuckets < OSSException; end	#用户的Bucket数目超过限制
 
 
-  class InvalidOption < OSSException ; end
+  class InvalidOption < StandardError ; end
   # Raised if an unrecognized option is passed when establishing a connection.
   class InvalidConnectionOption < InvalidOption
     def initialize(invalid_options)
@@ -57,27 +64,12 @@ module Aliyun::OSS
   class NoConnectionEstablished < OSSException ;end
 
   # Raise if location is invalid when create a bucket
-  InvalidLocationConstraint = Class.new(OSSException) do
-    def initialize(invalid_location)
-      message = "'#{invalid_location}' should be one of oss-cn-hangzhou、oss-cn-qingdao、oss-cn-beijing、oss-cn-hongkong、oss-cn-shenzhen、oss-cn-shanghai、oss-us-west-1 、oss-ap-southeast-1"
-      super(message)
-    end
-  end
+  InvalidLocationConstraint = Class.new(OSSException)
 
-  # raise when 若指定的数据中心与请求的终端域名不一致
   IllegalLocationConstraintException = Class.new(OSSException)
 
-  TooManyBuckets = Class.new OSSException do
-    def initialize(invalid_name)
-      super('You may only create 10 buckets tops')
-    end
-  end
+  TooManyBuckets = Class.new(OSSException)
 
   # Raise when new bucket name is invalid.
-  InvalidBucketName = Class.new OSSException do
-    def initialize(invalid_name)
-      message = "'#{invalid_name}' is not a valid bucket name. Bucket names must be between 1 and 1023 bytes and can contain letters, numbers, dashes and underscores."
-      super(message)
-    end
-  end
+  InvalidBucketName = Class.new(OSSException)
 end

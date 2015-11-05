@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://oss-cn-hangzhou.aliyuncs.com/
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <CreateBucketConfiguration>
+          <LocationConstraint>oss-cn-hangzhou</LocationConstraint>
+        </CreateBucketConfiguration>
+    headers:
+      X-Oss-Acl:
+      - private
+      Host:
+      - "****.oss-cn-hangzhou.aliyuncs.com"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.0.1/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Thu, 05 Nov 2015 15:01:31 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:eQzhCu9I76z0TE9gpHa1t/vlMbQ=
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Thu, 05 Nov 2015 15:00:16 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '280'
+      Connection:
+      - keep-alive
+      Server:
+      - AliyunOSS
+      X-Oss-Request-Id:
+      - 563B6F0001BBC48E0D595613
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Error>
+          <Code>InvalidBucketName</Code>
+          <Message>The specified bucket is not valid.</Message>
+          <BucketName>****</BucketName>
+          <RequestId>563B6F0001BBC48E0D595613</RequestId>
+          <HostId>****.oss-cn-hangzhou.aliyuncs.com</HostId>
+        </Error>
+    http_version: 
+  recorded_at: Thu, 05 Nov 2015 15:01:32 GMT
+recorded_with: VCR 2.9.3
