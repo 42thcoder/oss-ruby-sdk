@@ -4,6 +4,7 @@
 
 [![Code Climate](https://codeclimate.com/github/42thcoder/oss-ruby-sdk/badges/gpa.svg)](https://codeclimate.com/github/42thcoder/oss-ruby-sdk)
 
+[![Test Coverage](https://codeclimate.com/github/42thcoder/oss-ruby-sdk/badges/coverage.svg)](https://codeclimate.com/github/42thcoder/oss-ruby-sdk/coverage)
 
 # Oss::Sdk
 

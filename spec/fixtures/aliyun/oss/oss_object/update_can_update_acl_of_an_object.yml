@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://oss-cn-hangzhou.aliyuncs.com/6765.jpg?acl
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Host:
+      - ruby-sdk.oss-cn-hangzhou.aliyuncs.com
+      X-Oss-Object-Acl:
+      - public-read-write
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.0.2/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Thu, 05 Nov 2015 21:20:42 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:E4ZhWstPDdqiXxRvGiL87+11RqA=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 05 Nov 2015 21:19:24 GMT
+      Etag:
+      - '"97ACB5A4F68CA7723F6E4656CE79CFFB"'
+      Server:
+      - AliyunOSS
+      X-Oss-Request-Id:
+      - 563BC7DCAD341EA737FA5F6A
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 05 Nov 2015 21:20:42 GMT
+recorded_with: VCR 2.9.3

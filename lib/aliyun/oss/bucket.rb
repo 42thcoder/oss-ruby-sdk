@@ -200,7 +200,6 @@ module Aliyun::OSS
       # @return eg. `{:list_bucket_result=>{:name=>"ruby-sdk", :prefix=>nil, :marker=>nil, :max_keys=>"100", :delimiter=>nil, :is_truncated=>false, :contents=>[{:key=>"6764.jpg", :last_modified=>Thu, 05 Nov 2015 14:32:34 +0000, :e_tag=>"\"97ACB5A4F68CA7723F6E4656CE79CFFB\"", :type=>"Normal", :size=>"4143", :storage_class=>"Standard", :owner=>{:id=>"1889927870986049", :display_name=>"1889927870986049"}}, {:key=>"6764.jpg123", :last_modified=>Wed, 04 Nov 2015 15:37:34 +0000, :e_tag=>"\"97ACB5A4F68CA7723F6E4656CE79CFFB\"", :type=>"Normal", :size=>"4143", :storage_class=>"Standard", :owner=>{:id=>"1889927870986049", :display_name=>"1889927870986049"}}]}} `
       # @param (see .find)
       def lifecyle(name, location: DEFAULT_LOCATION)
-        p 123
         detail(:lifecyle, location, name)
       end
 
@@ -227,16 +226,11 @@ module Aliyun::OSS
       end
 
       private
-      def default_headers(location, name)
-        { 'host' => host(name, location) }
-      end
-
       def detail(aspect, location, name)
         headers = default_headers(location, name)
 
         Utility.parse_xml(get("/?#{aspect.to_s}", headers: headers, query: { aspect.to_s => nil }).body)
       end
-
     end
 
 

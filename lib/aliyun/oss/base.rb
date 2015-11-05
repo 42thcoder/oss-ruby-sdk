@@ -1,6 +1,7 @@
 module Aliyun::OSS
   class Base
     include Connection::Management
+    include Parser::XML
 
     class << self
       %i(get put delete post head).each do |verb|
@@ -20,6 +21,10 @@ module Aliyun::OSS
       private
       def host(name, location)
         "#{name}.#{location}.aliyuncs.com"
+      end
+
+      def default_headers(location, bucket_name)
+        { 'host' => host(bucket_name, location) }
       end
     end
 

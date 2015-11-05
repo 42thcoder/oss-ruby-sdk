@@ -8,6 +8,7 @@ Dotenv.load
 $:.unshift(File.dirname(__FILE__))
 require 'oss/version'
 require 'oss/utility'
+require 'oss/parser/xml'
 require 'oss/exceptions'
 require 'oss/authentication'
 require 'oss/connection'
