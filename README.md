@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/42thcoder/oss-ruby-sdk.svg?branch=master)](https://travis-ci.org/42thcoder/oss-ruby-sdk)
+
 [![Coverage Status](https://coveralls.io/repos/42thcoder/oss-ruby-sdk/badge.svg?branch=master&service=github)](https://coveralls.io/github/42thcoder/oss-ruby-sdk?branch=master)
 
 # Oss::Sdk
