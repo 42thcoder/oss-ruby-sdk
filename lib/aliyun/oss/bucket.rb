@@ -9,6 +9,20 @@ module Aliyun::OSS
     end
 
     class << self
+      # Create a new bucket.
+      # @param [String] name name of the new bucket.
+      # @param ['public-read-write' 'public-read' 'private'] acl  optional, access level of the new bucket.
+      # @param [String] location optional, the location that the new object would be saved at.
+      # @example Create a new Bucket named ruby-sdk
+      #   Bucket.create('ruby-sdk')
+      # @example By default new buckets have their access level set to private.
+      #   You can override this using the `acl` option. So does location.
+      #   Bucket.create('ruby-sdk', 'public', 'oss-cn-hangzhou')
+      # @note You must not create more thar 10 buckets.
+      # @raise [InvalidBucketName] Your bucket name must be unique across all of OSS. If the name
+      #   you request has already been taken, you will get a 409 Conflict response, and a BucketAlreadyExists exception
+      #   will be raised.
+      # @see http://ntp.org/documentation.html NTP Documentation
       def create(name, acl: 'private', location: DEFAULT_LOCATION)
         RequestOptions.new(name, acl, location).validate!
         builder = Nokogiri::XML::Builder.new do
@@ -16,28 +30,29 @@ module Aliyun::OSS
             LocationConstraint "#{location}"
           }
         end
-        put('/', headers: { 'x-oss-acl'=> acl, 'host'=> host(name, location) }, body: builder.to_xml, bucket: name)
+        put('/', headers: { 'x-oss-acl' => acl, 'host' => host(name, location) }, body: builder.to_xml, bucket: name)
       end
 
+      # @param (see .create )
       def update_acl(name, acl: 'private', location: DEFAULT_LOCATION)
-        headers = { 'x-oss-acl'=> acl, 'host'=> host(name, location) }
+        headers = { 'x-oss-acl' => acl, 'host' => host(name, location) }
 
-        put('/?acl', headers: headers, bucket: name, query: { 'acl'=> nil })
+        put('/?acl', headers: headers, bucket: name, query: { 'acl' => nil })
       end
 
       def get_location(name, location: DEFAULT_LOCATION)
-        headers = { 'host'=> host(name, location) }
+        headers = { 'host' => host(name, location) }
 
-        Response.new(get('/?location', headers: headers, bucket: name, query: { 'location'=> nil })).location
+        Response.new(get('/?location', headers: headers, bucket: name, query: { 'location' => nil })).location
       end
 
       def delete(name, location: DEFAULT_LOCATION)
-        headers = { 'host'=> host(name, location) }
+        headers = { 'host' => host(name, location) }
         Base.delete('/', headers: headers, bucket: name)
       end
 
       def objects(name, date, content_type)
-        get('/', { 'host'=> "#{name}.oss-cn-hangzhou.aliyuncs.com", 'date'=> date, 'content-type'=> content_type, 'accept'=> content_type })
+        get('/', { 'host' => "#{name}.oss-cn-hangzhou.aliyuncs.com", 'date' => date, 'content-type' => content_type, 'accept' => content_type })
       end
     end
 

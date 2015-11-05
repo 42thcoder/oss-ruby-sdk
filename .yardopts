@@ -1,0 +1,11 @@
+--no-private
+--protected
+--hide-void-return
+
+--markup-provider=redcarpet
+--markup=markdown
+
+-
+docs/GettingStarted.md
+docs/Locations.md
+docs/ACL.md

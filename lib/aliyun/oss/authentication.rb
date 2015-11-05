@@ -120,14 +120,13 @@ module Aliyun
                                 cors lifecycle restore qos referer append position).sort
           object = self.object || request.path.split('?').first.split('/').last
           bucket = self.bucket || ( request['host'].split('.').size == 4 ? request['host'].split('.').first : nil )
-
           result = '/'
           result += "#{bucket}/" if bucket
           result += object if object
-          if query.present?
-            raise ArgumentError, "invalid resources params: #{query}" if (query.keys & override_responses).blank?
+          if query.present? & (query.keys & override_responses).present?
+            # raise ArgumentError, "invalid resources params: #{query}" if (query.keys & override_responses).blank?
             result += '?'
-            tmp = query.map { |k, v| { k.downcase.strip => v } if override_responses.include?(k) }.reduce(:merge)
+            tmp = query.map { |k, v| { k.downcase => v } if override_responses.include?(k) }.reduce(:merge)
             tmp.each_with_index do |(k, v), index|
               result += k
               result += "=#{v}" if v

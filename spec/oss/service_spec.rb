@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Service do
   let(:options) { { server: DEFAULT_HOST, access_key_id: KEY_ID, access_key_secret: KEY_SECRET }}
-  before { Service.establish_connection!(options) }
+  before { Base.establish_connection!(options) }
   let(:service) { Service.new }
 
   it 'should has a valid connection' do
@@ -10,7 +10,9 @@ describe Service do
   end
 
   it 'should make http request' do
-    expect(Service.buckets).not_to be_nil
+    p 123
+    expect(Service.buckets(max_keys: 1)).not_to be_nil
+
   end
 
   it 'has can fetch bucket list' do
