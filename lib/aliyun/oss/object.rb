@@ -93,6 +93,11 @@ module Aliyun::OSS
 
         parse(get("/#{object}?acl", headers: headers, query: { 'acl' => nil }).body)
       end
+
+
+      def multipart_upload(object, bucket, location: DEFAULT_LOCATION)
+
+      end
     end
   end
 end

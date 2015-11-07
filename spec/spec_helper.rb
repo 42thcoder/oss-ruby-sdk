@@ -23,9 +23,9 @@ VCR.configure do |config|
   config.hook_into :webmock
 end
 
-RSpec.configure do |config|4
+RSpec.configure do |config|
   config.around(:each) do |example|
-    options = example.metadata[:vcr] || {}
+    options = (example.metadata[:vcr] || {})
     if options[:record] == :skip
       VCR.turned_off(&example)
     else

@@ -11,7 +11,6 @@ module Aliyun::OSS
           if response.is_a? Net::HTTPSuccess
             response
           else
-            p response.body
             raise ResponseError.new(response).find_or_create_exception!
           end
         end
@@ -42,7 +41,7 @@ module Aliyun::OSS
 
       private
       def find_exception
-        Aliyun::OSS.const_get(error[:code]).new(response, error[:message])
+        Aliyun::OSS.const_get(error[:code]).new(error[:message], response)
       end
 
       def create_exception

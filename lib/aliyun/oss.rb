@@ -16,6 +16,7 @@ require 'oss/base'
 require 'oss/bucket'
 require 'oss/service'
 require 'oss/object'
+require 'oss/multipart_upload'
 
 
 module Aliyun

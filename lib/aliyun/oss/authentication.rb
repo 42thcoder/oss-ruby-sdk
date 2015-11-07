@@ -110,7 +110,7 @@ module Aliyun
         end
 
         def build_resources
-          self << URI.unescape(path_query)
+          self << path_query
         end
 
         def path_query
@@ -125,14 +125,16 @@ module Aliyun
           result += object if object
 
           if query.present? && (query.keys & override_responses).present?
-            # raise ArgumentError, "invalid resources params: #{query}" if (query.keys & override_responses).blank?
-            result += '?'
-            tmp = query.map { |k, v| { k.downcase => v } if override_responses.include?(k) }.reduce(:merge)
+            query_str = ''
+
+            tmp = query.map { |k, v| { k => v } if override_responses.include?(k) }.reduce(:merge)
             tmp.each_with_index do |(k, v), index|
-              result += k
-              result += "=#{v}" if v
-              result += '&' if index < tmp.keys.size - 1
+              query_str += k
+              query_str += "=#{v}" if v
+              query_str += '&' if index < tmp.keys.size - 1
             end
+            # result += '?' + CGI::escapeHTML(query_str)
+            result += '?' + query_str
           end
           result
         end

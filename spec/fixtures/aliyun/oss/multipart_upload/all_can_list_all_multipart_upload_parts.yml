@@ -1,0 +1,196 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://oss-cn-hangzhou.aliyuncs.com/?uploads
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Host:
+      - ruby-sdk.oss-cn-hangzhou.aliyuncs.com
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.2.0/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Sat, 07 Nov 2015 15:21:59 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:aDFiGHAfjJ/QGWN/faA4yH6h66o=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '4996'
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 07 Nov 2015 15:20:36 GMT
+      Server:
+      - AliyunOSS
+      X-Oss-Request-Id:
+      - 563E16C4AD341EA737E385CF
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListMultipartUploadsResult>
+          <Bucket>ruby-sdk</Bucket>
+          <KeyMarker></KeyMarker>
+          <UploadIdMarker></UploadIdMarker>
+          <NextKeyMarker>2624.jpg</NextKeyMarker>
+          <NextUploadIdMarker>EE375F5F16A3457EA2BDC04347C78174</NextUploadIdMarker>
+          <Delimiter></Delimiter>
+          <Prefix></Prefix>
+          <MaxUploads>1000</MaxUploads>
+          <IsTruncated>false</IsTruncated>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>012B9DDE669944F69F7024978D8FA88A</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:44:20.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>1AA18B408F72438990361633ED061799</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:41:57.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>732A2BF15779414697483AA5441E90C6</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:58:47.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>79AC7016D72E421490CAD86598C3033D</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:44:49.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>9F782477BCCD4B95A9CA8CA368220531</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:57:01.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>BD27B8BB6F824CD6A1D5D12F11CB45AA</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:38:45.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>C097797518414E89AE99E194E2C48608</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:40:06.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>D7BA66BEE6724DF9B99DF9751978CD10</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:07:25.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2621.jpg</Key>
+            <UploadId>EF77B85466B34E9BA1FF3BC3BB5B5476</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:44:20.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2622.jpg</Key>
+            <UploadId>1EBBCC64A05C4610BF6ACD61BC754F6E</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:55:03.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2622.jpg</Key>
+            <UploadId>43FF51CA598F4A88AB3E076B88CFEE66</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:57:26.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2622.jpg</Key>
+            <UploadId>B967B17F602D4F56B8E55DD47D768590</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:56:05.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>2B34B5BCB71C4EF99267203117F26F98</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:23:19.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>3264FA59BAC74D94B2FA4AA4945869A2</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T12:54:08.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>47398000AA3B476C92D82CC57756480B</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T15:09:12.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>4AD4F6935A194D7A8A7C387596DDD788</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:02:38.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>5C15DE2937CB49C1B8B0CE5492DBCFD3</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:31:50.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>7BF897EECD4A4AF898E012ED79608591</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T15:07:42.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>862DC75ED7504D7D8BE37B5DBF52772D</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T12:54:08.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>99312EEFABF1428F8AF1B7C80CF4DF17</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T14:07:25.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>A5285A69E7584A0B854945505758A813</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:44:48.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>E49FB39D97E841A48FBB001F2D2E00F9</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:26:11.000Z</Initiated>
+          </Upload>
+          <Upload>
+            <Key>2624.jpg</Key>
+            <UploadId>EE375F5F16A3457EA2BDC04347C78174</UploadId>
+            <StorageClass>Standard</StorageClass>
+            <Initiated>2015-11-07T13:01:54.000Z</Initiated>
+          </Upload>
+        </ListMultipartUploadsResult>
+    http_version: 
+  recorded_at: Sat, 07 Nov 2015 15:21:59 GMT
+recorded_with: VCR 2.9.3

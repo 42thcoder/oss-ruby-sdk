@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://oss-cn-hangzhou.aliyuncs.com/2621.jpg?uploads
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Host:
+      - ruby-sdk.oss-cn-hangzhou.aliyuncs.com
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.2.0/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Sat, 07 Nov 2015 14:43:19 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:c+2KsAGqK5gn0FmZGR0ZV3b1+BU=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '210'
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 07 Nov 2015 14:41:57 GMT
+      Server:
+      - AliyunOSS
+      X-Oss-Request-Id:
+      - 563E0DB56D75CAB240DABADD
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <InitiateMultipartUploadResult>
+          <Bucket>ruby-sdk</Bucket>
+          <Key>2621.jpg</Key>
+          <UploadId>1AA18B408F72438990361633ED061799</UploadId>
+        </InitiateMultipartUploadResult>
+    http_version: 
+  recorded_at: Sat, 07 Nov 2015 14:43:19 GMT
+- request:
+    method: put
+    uri: http://oss-cn-hangzhou.aliyuncs.com/2621.jpg?partNumber=1&uploadId=1AA18B408F72438990361633ED061799
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Host:
+      - ruby-sdk.oss-cn-hangzhou.aliyuncs.com
+      X-Oss-Copy-Source:
+      - "/ruby-sdk/2624.jpg"
+      X-Oss-Copy-Source-Range:
+      - bytes=1-3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - aliyun-oss-ruby-sdk 0.1.2.0/ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-darwin14.0]
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Sat, 07 Nov 2015 14:43:19 GMT
+      Authorization:
+      - OSS 7QhZzFGQynBlm5r5:y9Yj/X6+9PHVYs9EE7F8lf/yAx4=
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - AliyunOSS
+      Date:
+      - Sat, 07 Nov 2015 14:41:57 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '265'
+      Connection:
+      - keep-alive
+      X-Oss-Request-Id:
+      - 563E0DB59C75D67EC1AB522E
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Error>
+          <Code>NoSuchKey</Code>
+          <Message>The specified key does not exist.</Message>
+          <RequestId>563E0DB59C75D67EC1AB522E</RequestId>
+          <HostId>ruby-sdk.oss-cn-hangzhou.aliyuncs.com</HostId>
+          <Key>2624.jpg</Key>
+        </Error>
+    http_version: 
+  recorded_at: Sat, 07 Nov 2015 14:43:20 GMT
+recorded_with: VCR 2.9.3
