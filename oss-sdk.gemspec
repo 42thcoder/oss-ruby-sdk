@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{oss sdk.}
   spec.description   = %q{oss sdk.}
   spec.homepage      = 'http://github.com/42thcoder'
-  spec.license       = 'MIT'
+  spec.license       = 'Apache License, version 2.0'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
@@ -45,4 +45,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'nokogiri', '~> 1.6'
   spec.add_runtime_dependency 'nori', '~> 2.6'
   spec.add_runtime_dependency 'dotenv', '~> 2.0'
+  spec.add_runtime_dependency 'virtus'
 end

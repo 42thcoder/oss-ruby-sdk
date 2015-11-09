@@ -57,7 +57,9 @@ See more connection details at Aliyun::OSS::Connection::Management::ClassMethods
 
 After set up, you can just have fun. The API of the SDK can be read [here](http://github.com)
 
-The three main concepts of OSS are the service, buckets and objects. 
+The three main concepts of OSS are the service, buckets and objects. All files in OSS are stored in buckets 
+which act as a top-level container much like a directory. 
+All files sent to OSS belong to a bucket and bucket names must be unique across the whole Aliyun OSS system.
 
 ### Service 
 
@@ -67,8 +69,9 @@ See `Service.buckets` `Service.owner`
 
 ### Bucket
 
-Buckets are containers for objects (the files you store on OSS). 
+Buckets are containers for objects (the files you store on OSS). A single bucket typically stores the files, assets and uploads for an application.
 
+To create a bucket, you can: `Bucket.create('ruby-sdk', 'private', location: 'oss-us-west-1')`
 
 ### OSSObject
 
